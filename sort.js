@@ -1,12 +1,26 @@
 var circleArray = [];
-var NUM_CIRCLES = 5;
+
+var unpixelize = function(pixels) {
+	return Number(pixels.slice(0,-2));
+};
+
+var settings = {
+	width: d3.select(".sort").style("width"),
+	height: d3.select(".sort").style("height"),
+	n: 10,
+};
+
+settings.max_radius = unpixelize(settings.width)/(2*settings.n);
+	// unpixelize(settings.height)/(2*settings.n)
+
+console.log(settings);
 
 var circleGenerator = function(n) {
 	var radius;
 	var currX = 0;
 
 	var generateRand = function() {
-		return Math.floor(Math.random() * 200);
+		return Math.floor(Math.random() * settings.max_radius);
 	};
 
 	for (var i = 0; i < n; i++) {
@@ -24,17 +38,13 @@ var circleGenerator = function(n) {
 	}
 };
 
-circleGenerator(NUM_CIRCLES);
-console.log(circleArray);
+circleGenerator(settings.n);
 
 //var sortDiv = d3.select(".sort");
 var circles = d3.select(".sort").selectAll("svg.player").data(circleArray);
 
 
 var createCircles = function() {
-	//var sortDivWidth = sortDiv.attr("width");
-	//var sortDivHeight = sortDiv.attr("height");
-	//debugger;
 	circles.enter()
 		.append("svg")
 		.attr("width", function(d) {
@@ -49,7 +59,7 @@ var createCircles = function() {
 			return d.radius;
 		})
 		.attr("cy", function(d){
-			return Number(d3.select(this.parentNode).style("height").slice(0,-2))/2;
+			return unpixelize(d3.select(this.parentNode).style("height"))/2;
 		})
 		.attr("cx", function(d){
 			return d.currentX;
