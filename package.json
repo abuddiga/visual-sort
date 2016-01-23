@@ -1,0 +1,15 @@
+{
+  "name": "visual-sort",
+  "version": "0.0.1",
+  "description": "Visualize sorting algorithms using D3.js",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo 'Error: no test specified'",
+    "start": "open index.html"
+  },
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/abuddiga/visual-sort/issues"
+  },
+  "homepage": "https://github.com/abuddiga/visual-sort"
+}
