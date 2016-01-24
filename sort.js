@@ -85,31 +85,25 @@ var bubbleSort = function() {
 		return result;
 	}
 
-	var arrR = generate(circleArray.length, settings.max_radius);
+	//var arrR = generate(2, settings.max_radius);
+	var tmp = circleArray[1];
+	circleArray[1] = circleArray[0];
+	circleArray[0] = tmp;
 
 	d3.selectAll('circle').data(circleArray)
 	.transition()
-	// .attr('r', function(d, i) {
-	// 	console.log(arrR[i]);
-	// 	return arrR[i];
+	// .attr('r', function(d) {
+	// 	//console.log(d);
+	// 	return d.radius;
 	// })
 	// .attr('cy', function(d) {
 	// 	return d.attr('cy');
 	// })
 	.attr('cx', function(d, i) {
-		return generate(1, unpixelize(settings.width));
+		return d.currentX;
 	})
 	.duration(500);
-	// var newCircleOne = {
-	// 	radius: 20,
-	// 	currentX: 20
-	// };
-
-	// var newCircleTwo = {
-	// 	radius: 20,
-	// 	currentX: 60
-	// };
-	// circles.data([newCircleOne, newCircleTwo]).transition();
+	
 };
 
 // var bubbleSort = function(array) {
